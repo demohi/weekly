@@ -4,7 +4,9 @@
   "description": "weekly",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "watchify -v -t vueify -e src/app.js -o build/build.js",
+    "build": "./node_modules/watchify/node_modules/.bin/browserify -t vueify src/app.js| uglifyjs -c -m   > build/build.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   "homepage": "https://github.com/demohi/weekly",
   "dependencies": {
     "director": "^1.2.3",
+    "reqwest": "^1.1.5",
     "vue": "^0.11.0"
   },
   "devDependencies": {
