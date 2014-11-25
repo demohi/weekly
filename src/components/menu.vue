@@ -6,7 +6,7 @@
       Labels
       <div class="menu">
         <a class="item" v-repeat="labels">
-          {{name}}
+          <span v-style="color:'#' + color">{{name}}</span>
         </a>
       </div>
     </div>

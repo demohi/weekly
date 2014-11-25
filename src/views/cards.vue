@@ -1,5 +1,5 @@
 <template>
-  <div class="ui four cards">
+  <div class="ui three cards">
     <div class="ui card" v-repeat="issues">
       <div class="content">
         <div class="header">{{title}}</div>

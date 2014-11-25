@@ -1,9 +1,9 @@
 <template>
   <div class="ui grid">
-    <div class="four wide column">
+    <div class="three wide column">
       <div v-component="menu-view"></div>
     </div>
-    <div class="eleven wide column">
+    <div class="twelve wide column">
       <div v-component="cards-view"></div>
     </div>
   </div>

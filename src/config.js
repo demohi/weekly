@@ -3,7 +3,7 @@
  */
 
 module.exports = {
-  repo: 'twbs/bootstrap',
+  repo: 'demohi/weekly',
   label: '',
   state: 'open',
   user: ''
