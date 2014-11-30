@@ -9927,9 +9927,14 @@ var router = new Router();
 
 router.on('/', function () {
   window.scrollTo(0, 0);
+  app.label = '';
   app.view = 'cards-view';
 });
-
+router.on('/label/:id', function(id){
+  window.scrollTo(0, 0);
+  app.label = id;
+  app.view = 'cards-view';
+});
 router.init('/');
 
 },{"./app.vue":"/Users/mdemo/work/code/weekly/src/app.vue","director":"/Users/mdemo/work/code/weekly/node_modules/director/build/director.js","vue":"/Users/mdemo/work/code/weekly/node_modules/vue/src/vue.js"}],"/Users/mdemo/work/code/weekly/src/app.vue":[function(require,module,exports){
@@ -9937,7 +9942,8 @@ var __vue_template__ = "<div class=\"ui grid\">\n    <div class=\"three wide col
 module.exports = {
     el: '#app',
     data: {
-      view: ''
+      view: '',
+      label: ''
     },
     components: {
       'menu-view': require('./components/menu.vue'),
@@ -9947,7 +9953,7 @@ module.exports = {
 module.exports.template = __vue_template__;
 
 },{"./components/menu.vue":"/Users/mdemo/work/code/weekly/src/components/menu.vue","./views/cards.vue":"/Users/mdemo/work/code/weekly/src/views/cards.vue"}],"/Users/mdemo/work/code/weekly/src/components/menu.vue":[function(require,module,exports){
-var __vue_template__ = "<div class=\"ui vertical menu\">\n    <a class=\"item\"><b>Home</b></a>\n\n    <div class=\"item\">\n      Labels\n      <div class=\"menu\">\n        <a class=\"item\" v-repeat=\"labels\">\n          <span v-style=\"color:'#' + color\">{{name}}</span>\n        </a>\n      </div>\n    </div>\n  </div>";
+var __vue_template__ = "<div class=\"ui vertical menu\">\n    <a class=\"item\" href=\"#/\"><b>Home</b></a>\n    <a v-attr=\"href: '#/label/' + name\" class=\"item\" v-repeat=\"labels\">{{name}}</a>\n  </div>";
 var github = require('../lib/github');
   module.exports = {
     replace: true,
@@ -9994,9 +10000,13 @@ var base = 'https://api.github.com/';
 var repos = base + 'repos/';
 
 module.exports = {
-  getIssues: function (callback) {
+  getIssues: function (label, callback) {
+    var url = repos + config.repo + '/issues';
+    if(label){
+      url += ('?labels=' + label);
+    }
     reqwest({
-      url: repos + config.repo + '/issues',
+      url: url,
       type: 'json',
       method: 'get'
     }).then(function (res) {
@@ -10019,14 +10029,15 @@ module.exports = {
 };
 
 },{"../config":"/Users/mdemo/work/code/weekly/src/config.js","reqwest":"/Users/mdemo/work/code/weekly/node_modules/reqwest/reqwest.js"}],"/Users/mdemo/work/code/weekly/src/views/cards.vue":[function(require,module,exports){
-var __vue_template__ = "<div class=\"ui two cards\">\n    <div class=\"ui card\" v-repeat=\"issues\">\n      <div class=\"content\">\n        <div class=\"description\" v-html=\" body| marked\">\n        </div>\n      </div>\n      <div class=\"extra content\">\n        <div class=\"right floated author\">\n          <img class=\"ui avatar image\" v-attr=\"src: user.avatar_url\"> {{user.login}}\n        </div>\n      </div>\n    </div>\n  </div>";
+var __vue_template__ = "<div class=\"ui two cards\" v-with=\"label:label\">\n    <div class=\"ui card\" v-repeat=\"issues\">\n      <div class=\"content\">\n        <div class=\"description\" v-html=\" body| marked\">\n        </div>\n      </div>\n      <div class=\"extra content\">\n        <div class=\"right floated author\">\n          <img class=\"ui avatar image\" v-attr=\"src: user.avatar_url\"> {{user.login}}\n        </div>\n      </div>\n    </div>\n  </div>";
 var github = require('../lib/github');
   var marked = require('marked');
   module.exports = {
     replace: true,
     data: function () {
       return {
-        issues: []
+        issues: [],
+        label: ''
       }
     },
     filters: {
@@ -10034,10 +10045,11 @@ var github = require('../lib/github');
     },
     compiled: function () {
       this.getData();
+      this.$watch('label', this.getData)
     },
     methods: {
       getData: function () {
-        github.getIssues(function (err, res) {
+        github.getIssues(this.label, function (err, res) {
           if (!err) {
             this.issues = res;
           }

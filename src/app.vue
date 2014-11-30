@@ -12,7 +12,8 @@
   module.exports = {
     el: '#app',
     data: {
-      view: ''
+      view: '',
+      label: ''
     },
     components: {
       'menu-view': require('./components/menu.vue'),

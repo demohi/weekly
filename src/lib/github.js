@@ -8,9 +8,13 @@ var base = 'https://api.github.com/';
 var repos = base + 'repos/';
 
 module.exports = {
-  getIssues: function (callback) {
+  getIssues: function (label, callback) {
+    var url = repos + config.repo + '/issues';
+    if(label){
+      url += ('?labels=' + label);
+    }
     reqwest({
-      url: repos + config.repo + '/issues',
+      url: url,
       type: 'json',
       method: 'get'
     }).then(function (res) {

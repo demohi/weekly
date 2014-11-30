@@ -1,15 +1,7 @@
 <template>
   <div class="ui vertical menu">
-    <a class="item"><b>Home</b></a>
-
-    <div class="item">
-      Labels
-      <div class="menu">
-        <a class=" item" v-repeat="labels">
-          <span v-style="color:'#' + color" >{{name}}</span>
-        </a>
-      </div>
-    </div>
+    <a class="item" href="#/"><b>Home</b></a>
+    <a v-attr="href: '#/label/' + name" class="item" v-repeat="labels">{{name}}</a>
   </div>
 </template>
 <script>

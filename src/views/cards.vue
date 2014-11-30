@@ -1,5 +1,5 @@
 <template>
-  <div class="ui two cards">
+  <div class="ui two cards" v-with="label:label">
     <div class="ui  card" v-repeat="issues">
       <div class="content">
         <div class="description" v-html=" body| marked">
@@ -20,7 +20,8 @@
     replace: true,
     data: function () {
       return {
-        issues: []
+        issues: [],
+        label: ''
       }
     },
     filters: {
@@ -28,10 +29,11 @@
     },
     compiled: function () {
       this.getData();
+      this.$watch('label', this.getData)
     },
     methods: {
       getData: function () {
-        github.getIssues(function (err, res) {
+        github.getIssues(this.label, function (err, res) {
           if (!err) {
             this.issues = res;
           }
