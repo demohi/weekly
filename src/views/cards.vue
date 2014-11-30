@@ -1,14 +1,8 @@
 <template>
-  <div class="ui three cards">
-    <div class="ui card" v-repeat="issues">
+  <div class="ui two cards">
+    <div class="ui  card" v-repeat="issues">
       <div class="content">
-        <div class="header">{{title}}</div>
-        <div class="meta">
-          <div class="ui  labels">
-            <a class="ui purple label" v-repeat="labels">
-              {{name}}
-            </a>
-          </div>
+        <div class="description" v-html=" body| marked">
         </div>
       </div>
       <div class="extra content">
@@ -21,12 +15,16 @@
 </template>
 <script>
   var github = require('../lib/github');
+  var marked = require('marked');
   module.exports = {
     replace: true,
     data: function () {
       return {
         issues: []
       }
+    },
+    filters: {
+      marked: marked
     },
     compiled: function () {
       this.getData();

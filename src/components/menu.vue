@@ -5,8 +5,8 @@
     <div class="item">
       Labels
       <div class="menu">
-        <a class="item" v-repeat="labels">
-          <span v-style="color:'#' + color">{{name}}</span>
+        <a class=" item" v-repeat="labels">
+          <span v-style="color:'#' + color" >{{name}}</span>
         </a>
       </div>
     </div>

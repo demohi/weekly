@@ -23,6 +23,7 @@
   "homepage": "https://github.com/demohi/weekly",
   "dependencies": {
     "director": "^1.2.3",
+    "marked": "^0.3.2",
     "reqwest": "^1.1.5",
     "vue": "^0.11.0"
   },

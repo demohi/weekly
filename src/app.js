@@ -9,7 +9,6 @@ var router = new Router();
 
 router.on('/', function () {
   window.scrollTo(0, 0);
-  console.log(app.view);
   app.view = 'cards-view';
 });
 
