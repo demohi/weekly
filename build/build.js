@@ -9938,7 +9938,7 @@ router.on('/label/:id', function(id){
 router.init('/');
 
 },{"./app.vue":"/Users/mdemo/work/code/weekly/src/app.vue","director":"/Users/mdemo/work/code/weekly/node_modules/director/build/director.js","vue":"/Users/mdemo/work/code/weekly/node_modules/vue/src/vue.js"}],"/Users/mdemo/work/code/weekly/src/app.vue":[function(require,module,exports){
-var __vue_template__ = "<div class=\"ui grid\">\n    <div class=\"three wide column\">\n      <div v-component=\"menu-view\"></div>\n    </div>\n    <div class=\"twelve wide column\">\n      <div v-component=\"{{view}}\"></div>\n    </div>\n  </div>";
+var __vue_template__ = "<div class=\"ui grid\">\n    <div class=\"four wide column\">\n      <div v-component=\"menu-view\"></div>\n    </div>\n    <div class=\"ten wide column\">\n      <div v-component=\"{{view}}\"></div>\n    </div>\n  </div>";
 module.exports = {
     el: '#app',
     data: {
@@ -9953,7 +9953,7 @@ module.exports = {
 module.exports.template = __vue_template__;
 
 },{"./components/menu.vue":"/Users/mdemo/work/code/weekly/src/components/menu.vue","./views/cards.vue":"/Users/mdemo/work/code/weekly/src/views/cards.vue"}],"/Users/mdemo/work/code/weekly/src/components/menu.vue":[function(require,module,exports){
-var __vue_template__ = "<div class=\"ui vertical menu\">\n    <a class=\"item\" href=\"#/\"><b>Home</b></a>\n    <a v-attr=\"href: '#/label/' + name\" class=\"item\" v-repeat=\"labels\">{{name}}</a>\n  </div>";
+var __vue_template__ = "<div class=\"ui vertical menu\" style=\"width: 100%\">\n    <a class=\"item\" href=\"#/\"><b>Home</b></a>\n    <a v-attr=\"href: '#/label/' + name\" class=\"item\" v-repeat=\"labels\">{{name}}</a>\n  </div>";
 var github = require('../lib/github');
   module.exports = {
     replace: true,
@@ -10029,7 +10029,7 @@ module.exports = {
 };
 
 },{"../config":"/Users/mdemo/work/code/weekly/src/config.js","reqwest":"/Users/mdemo/work/code/weekly/node_modules/reqwest/reqwest.js"}],"/Users/mdemo/work/code/weekly/src/views/cards.vue":[function(require,module,exports){
-var __vue_template__ = "<div class=\"ui two cards\" v-with=\"label:label\">\n    <div class=\"ui card\" v-repeat=\"issues\">\n      <div class=\"content\">\n        <div class=\"description\" v-html=\" body| marked\">\n        </div>\n      </div>\n      <div class=\"extra content\">\n        <div class=\"right floated author\">\n          <img class=\"ui avatar image\" v-attr=\"src: user.avatar_url\"> {{user.login}}\n        </div>\n      </div>\n    </div>\n  </div>";
+var __vue_template__ = "<div class=\"ui one cards\" v-with=\"label:label\">\n    <div class=\"ui card\" v-repeat=\"issues\">\n      <div class=\"content\">\n        <div class=\"description\" v-html=\" body| marked\">\n        </div>\n      </div>\n      <div class=\"extra content\">\n        <div class=\"right floated author\">\n          <img class=\"ui avatar image\" v-attr=\"src: user.avatar_url\"> {{user.login}}\n        </div>\n      </div>\n    </div>\n  </div>";
 var github = require('../lib/github');
   var marked = require('marked');
   module.exports = {

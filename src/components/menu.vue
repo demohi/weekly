@@ -1,5 +1,5 @@
 <template>
-  <div class="ui vertical menu">
+  <div class="ui vertical menu" style="width: 100%">
     <a class="item" href="#/"><b>Home</b></a>
     <a v-attr="href: '#/label/' + name" class="item" v-repeat="labels">{{name}}</a>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="ui two cards" v-with="label:label">
+  <div class="ui one cards" v-with="label:label">
     <div class="ui  card" v-repeat="issues">
       <div class="content">
         <div class="description" v-html=" body| marked">
